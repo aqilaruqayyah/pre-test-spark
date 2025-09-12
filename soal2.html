@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Soal 2 - Balok</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background-color: #cce7ff;
+      color: #333;
+    }
+
+    .section-title {
+      font-size: 2em;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+
+    .soal {
+      background: #ffffffcc;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto 40px auto;
+      max-width: 700px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #6a5acd;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 300px;
+      border-radius: 15px;
+      margin: 15px 0;
+      background: #f1f1f1;
+    }
+
+    input[type="text"], button {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #6a5acd;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #5848c2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section-title">Latihan Soal</div>
+
+  <div class="soal">
+    <h2>Soal 2</h2>
+    <p>✨ Sebuah balok mempunyai diagonal bidang sebanyak ....</p>
+
+    <!-- Model 3D Balok -->
+    <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/balok2.glb"
+                  alt="Balok 3D"
+                  ar
+                  camera-controls>
+    </model-viewer>
+
+    <!-- Form Jawaban -->
+    <input type="text" id="jawaban" placeholder="Masukkan jawaban kamu di sini" />
+    <br><br>
+    <button onclick="submitAnswer()">Kirim Jawaban</button>
+  </div>
+
+  <script>
+    function submitAnswer() {
+      const jawaban = document.getElementById('jawaban').value;
+      const nama = localStorage.getItem("nama"); // ambil nama dari index
+      if (!jawaban) {
+        alert("Isi dulu jawabannya!");
+        return;
+      }
+
+      fetch("https://script.google.com/macros/s/AKfycbwSajqkKsstYNjYxALDFC0P2WigjJVXp7I-TKfNpn3U5eYzN8geEF8NO-B-O-9clQrPpQ/exec", {
+        method: "POST",
+        body: new URLSearchParams({
+          "nama": nama,
+          "soal": "Soal 2",
+          "jawaban": jawaban
+        })
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert("Jawaban berhasil dikirim!");
+        window.location.href = "soal3.html"; // ganti kalau udah siap soal 3
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Gagal mengirim jawaban.");
+      });
+    }
+  </script>
+
+</body>
+</html>
