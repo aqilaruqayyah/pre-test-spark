@@ -9,7 +9,8 @@
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
       text-align: center;
-      padding: 20px;
+      padding-top: 15vh; /* konten turun supaya tidak ketutupan menu Sites */
+      box-sizing: border-box;
       margin: 0;
     }
 
@@ -42,9 +43,7 @@
     }
 
     @media (max-width: 480px) {
-      model-viewer {
-        height: 200px;
-      }
+      model-viewer { height: 200px; }
     }
 
     input, button {
@@ -82,41 +81,19 @@
 
   <input type="text" id="jawaban4" placeholder="Tulis jawabanmu di sini">
   <br>
-  <button onclick="submitSemua()">Kirim Semua Jawaban</button>
+  <button onclick="selesai()">Selesai</button>
 </div>
 
 <script>
-function submitSemua(){
+function selesai(){
   const jawaban = document.getElementById('jawaban4').value.trim();
   if(!jawaban){
     alert("Jawaban harus diisi!");
     return;
   }
-
-  // Simpan jawaban soal4 di localStorage
   localStorage.setItem("soal4", jawaban);
-
-  // Ambil semua jawaban dan nama dari localStorage
-  const data = new URLSearchParams();
-  data.append("nama", localStorage.getItem("namaSiswa"));
-  data.append("soal1", localStorage.getItem("soal1"));
-  data.append("soal2", localStorage.getItem("soal2"));
-  data.append("soal3", localStorage.getItem("soal3"));
-  data.append("soal4", localStorage.getItem("soal4"));
-
-  // Ganti URL di bawah dengan Web App URL Apps Script kamu
-  fetch("https://script.google.com/macros/s/AKfycbxtHnEKtCwNPb0khkMMNBz5hWExt6X8HcsEQd5aOAdZIBd7WGkkwrDJU2iUYPrYdxJO5g/exec", {
-    method: "POST",
-    body: data,
-    mode: "no-cors"
-  })
-  .then(() => {
-    // Bersihkan localStorage setelah submit
-    localStorage.clear();
-    // Redirect ke selesai.html
-    window.location.href = "selesai.html";
-  })
-  .catch(err => alert("Gagal simpan jawaban"));
+  // Redirect ke halaman selesai
+  window.location.href = "selesai.html";
 }
 </script>
 
