@@ -9,14 +9,10 @@
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
       text-align: center;
-      padding: 20px;
+      padding-top: 15vh; /* konten turun supaya tidak ketutupan menu Sites */
+      box-sizing: border-box;
       margin: 0;
     }
-
-    .container, .soal-box { 
-      margin-top: 60px; /* geser konten turun */
-    }
-
 
     .soal-box {
       background: #ffffffcc;
@@ -46,11 +42,8 @@
       background: #f1f1f1;
     }
 
-    /* versi mobile lebih kecil */
     @media (max-width: 480px) {
-      model-viewer {
-        height: 200px;
-      }
+      model-viewer { height: 200px; }
     }
 
     input, button {
@@ -88,22 +81,4 @@
 
   <input type="text" id="jawaban1" placeholder="Tulis jawabanmu di sini">
   <br>
-  <button onclick="lanjut()">Lanjut ke Soal 2</button>
-</div>
-
-<script>
-function lanjut(){
-  const jawaban = document.getElementById('jawaban1').value.trim();
-  if(!jawaban){
-    alert("Jawaban harus diisi!");
-    return;
-  }
-  // Simpan jawaban soal1 di localStorage
-  localStorage.setItem("soal1", jawaban);
-  // Redirect ke soal2.html
-  window.location.href = "soal2.html";
-}
-</script>
-
-</body>
-</html>
+  <button onclick="lanjut()">Lanjut ke
