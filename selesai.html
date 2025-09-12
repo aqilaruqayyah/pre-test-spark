@@ -8,7 +8,7 @@
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
       text-align: center;
-      padding-top: 15vh; /* konten turun supaya tidak ketutupan menu Sites */
+      padding-top: 15vh;
       box-sizing: border-box;
       margin: 0;
     }
@@ -22,17 +22,8 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
-    h2 {
-      color: #6a5acd;
-      margin-bottom: 15px;
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 10px;
-      color: #333;
-    }
-
+    h2 { color: #6a5acd; margin-bottom: 15px; }
+    p { font-size: 1.1em; margin-bottom: 10px; color: #333; }
     button {
       background: #4CAF50;
       color: white;
@@ -44,7 +35,6 @@
       font-weight: 600;
       cursor: pointer;
     }
-
     button:hover { background: #45a049; }
 
     .jawaban {
@@ -56,9 +46,7 @@
       border-radius: 12px;
     }
 
-    @media (max-width: 480px) {
-      .jawaban { font-size: 0.95em; }
-    }
+    @media (max-width: 480px) { .jawaban { font-size: 0.95em; } }
   </style>
 </head>
 <body>
@@ -79,18 +67,40 @@
 </div>
 
 <script>
-  // Ambil data dari localStorage
-  document.getElementById("namaSiswa").innerText = localStorage.getItem("namaSiswa") || "-";
-  document.getElementById("j1").innerText = localStorage.getItem("soal1") || "-";
-  document.getElementById("j2").innerText = localStorage.getItem("soal2") || "-";
-  document.getElementById("j3").innerText = localStorage.getItem("soal3") || "-";
-  document.getElementById("j4").innerText = localStorage.getItem("soal4") || "-";
+const NAMA = localStorage.getItem("namaSiswa");
+const SOAL1 = localStorage.getItem("soal1");
+const SOAL2 = localStorage.getItem("soal2");
+const SOAL3 = localStorage.getItem("soal3");
+const SOAL4 = localStorage.getItem("soal4");
 
-  function kembali(){
-    // Bersihkan jawaban jika mau mulai lagi
-    localStorage.clear();
-    window.location.href = "index.html"; // ganti dengan link index Google Sites jika perlu
-  }
+// tampilkan di halaman
+document.getElementById("namaSiswa").innerText = NAMA || "-";
+document.getElementById("j1").innerText = SOAL1 || "-";
+document.getElementById("j2").innerText = SOAL2 || "-";
+document.getElementById("j3").innerText = SOAL3 || "-";
+document.getElementById("j4").innerText = SOAL4 || "-";
+
+// kirim ke Apps Script
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxtHnEKtCwNPb0khkMMNBz5hWExt6X8HcsEQd5aOAdZIBd7WGkkwrDJU2iUYPrYdxJO5g/exec"; // ganti dengan URL Web App kamu
+fetch(WEBAPP_URL, {
+  method: "POST",
+  body: JSON.stringify({
+    nama: NAMA,
+    soal1: SOAL1,
+    soal2: SOAL2,
+    soal3: SOAL3,
+    soal4: SOAL4
+  }),
+  headers: { "Content-Type": "application/json" }
+})
+.then(res => res.text())
+.then(txt => console.log("Jawaban berhasil dikirim:", txt))
+.catch(err => console.error("Gagal kirim jawaban:", err));
+
+function kembali(){
+  localStorage.clear();
+  window.location.href = "index.html"; // ganti dengan link index Google Sites
+}
 </script>
 
 </body>
