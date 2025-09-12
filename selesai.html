@@ -7,55 +7,91 @@
     body {
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
       text-align: center;
-      padding: 20px;
+      padding-top: 15vh; /* konten turun supaya tidak ketutupan menu Sites */
+      box-sizing: border-box;
+      margin: 0;
     }
 
-    .box {
+    .container {
       background: #ffffffcc;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      max-width: 500px;
+      padding: 30px 20px;
+      border-radius: 25px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     h2 {
       color: #6a5acd;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     p {
       font-size: 1.1em;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+      color: #333;
     }
 
-    a.button {
-      display: inline-block;
-      padding: 12px 25px;
+    button {
       background: #4CAF50;
       color: white;
-      text-decoration: none;
-      border-radius: 10px;
+      border: none;
+      padding: 12px 25px;
+      margin-top: 20px;
+      border-radius: 12px;
+      font-size: 16px;
       font-weight: 600;
+      cursor: pointer;
     }
 
-    a.button:hover {
-      background: #45a049;
+    button:hover { background: #45a049; }
+
+    .jawaban {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 1em;
+      background: #f1f1f1;
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    @media (max-width: 480px) {
+      .jawaban { font-size: 0.95em; }
     }
   </style>
 </head>
 <body>
 
-<div class="box">
-  <h2>🎉 Terima Kasih!</h2>
-  <p>Jawaban kamu telah berhasil dikirim. Semoga hasil pre-test memuaskan!</p>
-  <a class="button" href="index.html">Kembali ke Halaman Utama</a>
+<div class="container">
+  <h2>✅ Pre-Test Selesai</h2>
+  <p>Terima kasih sudah mengerjakan pre-test! Berikut jawabanmu:</p>
+
+  <div class="jawaban">
+    <p><strong>Nama:</strong> <span id="namaSiswa"></span></p>
+    <p><strong>Soal 1:</strong> <span id="j1"></span></p>
+    <p><strong>Soal 2:</strong> <span id="j2"></span></p>
+    <p><strong>Soal 3:</strong> <span id="j3"></span></p>
+    <p><strong>Soal 4:</strong> <span id="j4"></span></p>
+  </div>
+
+  <button onclick="kembali()">Kembali ke Index</button>
 </div>
+
+<script>
+  // Ambil data dari localStorage
+  document.getElementById("namaSiswa").innerText = localStorage.getItem("namaSiswa") || "-";
+  document.getElementById("j1").innerText = localStorage.getItem("soal1") || "-";
+  document.getElementById("j2").innerText = localStorage.getItem("soal2") || "-";
+  document.getElementById("j3").innerText = localStorage.getItem("soal3") || "-";
+  document.getElementById("j4").innerText = localStorage.getItem("soal4") || "-";
+
+  function kembali(){
+    // Bersihkan jawaban jika mau mulai lagi
+    localStorage.clear();
+    window.location.href = "index.html"; // ganti dengan link index Google Sites jika perlu
+  }
+</script>
 
 </body>
 </html>
