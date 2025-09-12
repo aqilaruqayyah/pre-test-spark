@@ -6,44 +6,65 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
-      font-family:Poppins,sans-serif;
-      background:#cce7ff;
-      text-align:center;
-      padding:20px;
+      font-family: 'Poppins', sans-serif;
+      background: #cce7ff;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
     }
+
     .soal-box {
-      background:#ffffffcc;
-      padding:20px;
-      border-radius:20px;
-      max-width:700px;
-      margin:auto;
-      box-shadow:0 8px 25px rgba(0,0,0,0.2);
+      background: #ffffffcc;
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
-    h2 { color:#6a5acd; margin-bottom:10px; }
-    p { font-size:1.1em; margin-bottom:15px; }
+
+    h2 {
+      color: #6a5acd;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
     model-viewer {
-      width:100%;
-      height:300px;
-      border-radius:15px;
-      margin:15px 0;
-      background:#f1f1f1;
+      width: 100%;
+      max-width: 700px;
+      height: 300px;
+      border-radius: 15px;
+      margin: 15px 0;
+      background: #f1f1f1;
     }
+
+    @media (max-width: 480px) {
+      model-viewer {
+        height: 200px;
+      }
+    }
+
     input, button {
-      width:90%;
-      padding:12px;
-      margin-top:10px;
-      border-radius:10px;
-      font-size:16px;
-      border:1px solid #ccc;
+      width: 90%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
     }
+
     button {
-      background:#4CAF50;
-      color:white;
-      border:none;
-      cursor:pointer;
-      font-weight:600;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
     }
-    button:hover { background:#45a049; }
+
+    button:hover { background: #45a049; }
   </style>
 </head>
 <body>
@@ -52,8 +73,12 @@
   <h2>Soal 4</h2>
   <p>✨ Sebuah kardus berbentuk kubus dengan panjang rusuk 25 cm akan dilapisi kertas kado. Berapa luas kertas minimal yang dibutuhkan?</p>
 
-  <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kardus.glb"
-                alt="Kardus 3D" ar camera-controls></model-viewer>
+  <model-viewer 
+      src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kardus.glb" 
+      alt="Kardus 3D" 
+      ar 
+      camera-controls>
+  </model-viewer>
 
   <input type="text" id="jawaban4" placeholder="Tulis jawabanmu di sini">
   <br>
@@ -81,15 +106,15 @@ function submitSemua(){
 
   // Ganti URL di bawah dengan Web App URL Apps Script kamu
   fetch("https://script.google.com/macros/s/AKfycbxtHnEKtCwNPb0khkMMNBz5hWExt6X8HcsEQd5aOAdZIBd7WGkkwrDJU2iUYPrYdxJO5g/exec", {
-    method:"POST",
+    method: "POST",
     body: data,
-    mode:"no-cors"
+    mode: "no-cors"
   })
   .then(() => {
-    // Hapus localStorage setelah submit
+    // Bersihkan localStorage setelah submit
     localStorage.clear();
-    // Redirect ke halaman selesai
-    window.location.href="selesai.html";
+    // Redirect ke selesai.html
+    window.location.href = "selesai.html";
   })
   .catch(err => alert("Gagal simpan jawaban"));
 }
