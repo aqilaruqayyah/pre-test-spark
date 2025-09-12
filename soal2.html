@@ -9,7 +9,8 @@
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
       text-align: center;
-      padding: 20px;
+      padding-top: 15vh; /* konten turun supaya tidak ketutupan menu Sites */
+      box-sizing: border-box;
       margin: 0;
     }
 
@@ -42,9 +43,7 @@
     }
 
     @media (max-width: 480px) {
-      model-viewer {
-        height: 200px;
-      }
+      model-viewer { height: 200px; }
     }
 
     input, button {
@@ -92,9 +91,7 @@ function lanjut(){
     alert("Jawaban harus diisi!");
     return;
   }
-  // Simpan jawaban soal2 di localStorage
   localStorage.setItem("soal2", jawaban);
-  // Redirect ke soal3.html
   window.location.href = "soal3.html";
 }
 </script>
