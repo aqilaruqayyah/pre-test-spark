@@ -9,7 +9,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #2193b0, #6dd5ed);
+      background: #cce7ff;
       margin: 0;
       padding: 20px;
       min-height: 100vh;
@@ -19,12 +19,12 @@
     }
 
     .soal-box {
-      background: #ffffffdd;
+      background: #ffffffcc;
       border-radius: 20px;
       padding: 30px;
       max-width: 700px;
       width: 100%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
       text-align: center;
     }
 
@@ -34,8 +34,9 @@
     }
 
     p {
-      font-size: 18px;
+      font-size: 1.1em;
       margin-bottom: 20px;
+      color: #333;
     }
 
     model-viewer {
@@ -57,7 +58,7 @@
     }
 
     button {
-      background: #ff9800;
+      background: #4CAF50;
       color: white;
       border: none;
       padding: 12px 24px;
@@ -69,13 +70,14 @@
     }
 
     button:hover {
-      background: #e68900;
+      background: #45a049;
     }
 
     #status {
       margin-top: 15px;
       font-size: 14px;
       font-weight: 600;
+      color: #333;
     }
   </style>
 </head>
@@ -98,7 +100,7 @@
 
   <script>
     function kirim() {
-      const nama = localStorage.getItem("namaSiswa"); // ambil nama dari halaman index
+      const nama = localStorage.getItem("namaSiswa");
       const jawaban = document.getElementById("jawaban").value.trim();
 
       if (!jawaban) {
@@ -120,9 +122,8 @@
       .then(res => res.text())
       .then(txt => {
         document.getElementById("status").innerText = "✅ Jawaban tersimpan!";
-        // pindah ke soal 2 setelah sukses
         setTimeout(() => {
-          window.location.href = "soal2.html"; // ganti dengan link Google Sites kalau dipakai di sana
+          window.location.href = "https://aqilaruqayyah.github.io/pre-test-spark/soal2";
         }, 1000);
       })
       .catch(err => {
