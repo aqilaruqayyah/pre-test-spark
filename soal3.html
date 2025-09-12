@@ -6,44 +6,65 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     body {
-      font-family:Poppins,sans-serif;
-      background:#cce7ff;
-      text-align:center;
-      padding:20px;
+      font-family: 'Poppins', sans-serif;
+      background: #cce7ff;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
     }
+
     .soal-box {
-      background:#ffffffcc;
-      padding:20px;
-      border-radius:20px;
-      max-width:700px;
-      margin:auto;
-      box-shadow:0 8px 25px rgba(0,0,0,0.2);
+      background: #ffffffcc;
+      padding: 20px;
+      border-radius: 20px;
+      max-width: 700px;
+      margin: auto;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
-    h2 { color:#6a5acd; margin-bottom:10px; }
-    p { font-size:1.1em; margin-bottom:15px; }
+
+    h2 {
+      color: #6a5acd;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+    }
+
     model-viewer {
-      width:100%;
-      height:300px;
-      border-radius:15px;
-      margin:15px 0;
-      background:#f1f1f1;
+      width: 100%;
+      max-width: 700px;
+      height: 300px;
+      border-radius: 15px;
+      margin: 15px 0;
+      background: #f1f1f1;
     }
+
+    @media (max-width: 480px) {
+      model-viewer {
+        height: 200px;
+      }
+    }
+
     input, button {
-      width:90%;
-      padding:12px;
-      margin-top:10px;
-      border-radius:10px;
-      font-size:16px;
-      border:1px solid #ccc;
+      width: 90%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
     }
+
     button {
-      background:#4CAF50;
-      color:white;
-      border:none;
-      cursor:pointer;
-      font-weight:600;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
     }
-    button:hover { background:#45a049; }
+
+    button:hover { background: #45a049; }
   </style>
 </head>
 <body>
@@ -52,8 +73,12 @@
   <h2>Soal 3</h2>
   <p>✨ Sebuah akuarium berbentuk balok memiliki ukuran panjang 60 cm, lebar 40 cm, dan tinggi 50 cm. Jika akuarium tersebut hanya diisi air hingga 4/5 bagian, berapa liter volume air di dalamnya?</p>
 
-  <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/fishless_aquarium.glb"
-                alt="Akuarium 3D" ar camera-controls></model-viewer>
+  <model-viewer 
+      src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/fishless_aquarium.glb" 
+      alt="Akuarium 3D" 
+      ar 
+      camera-controls>
+  </model-viewer>
 
   <input type="text" id="jawaban3" placeholder="Tulis jawabanmu di sini">
   <br>
@@ -70,7 +95,7 @@ function lanjut(){
   // Simpan jawaban soal3 di localStorage
   localStorage.setItem("soal3", jawaban);
   // Redirect ke soal4.html
-  window.location.href="soal4.html";
+  window.location.href = "soal4.html";
 }
 </script>
 
