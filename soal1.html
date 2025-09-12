@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Soal 1 - Pre-Test Spark</title>
+  <title>Soal 1 - Kubus</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
@@ -47,30 +47,27 @@
       background: #f1f1f1;
     }
 
-    textarea {
-      width: 100%;
+    input[type="text"], button {
       padding: 12px;
+      font-size: 16px;
       border-radius: 10px;
       border: 1px solid #ccc;
-      font-size: 16px;
-      margin-bottom: 20px;
-      resize: vertical;
+      margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     button {
-      background: #4CAF50;
+      background-color: #4CAF50;
       color: white;
       border: none;
-      padding: 12px 24px;
-      border-radius: 10px;
       cursor: pointer;
-      font-size: 16px;
+      margin-top: 15px;
       font-weight: 600;
-      transition: 0.3s;
     }
 
     button:hover {
-      background: #45a049;
+      background-color: #45a049;
     }
 
     #status {
@@ -86,33 +83,32 @@
     <h2>Soal 1</h2>
     <p>✨ Banyaknya bidang diagonal sebuah kubus adalah ....</p>
 
-    <!-- 3D Model Kubus -->
+    <!-- Model 3D Kubus -->
     <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kubus.glb"
                   alt="Kubus 3D"
                   camera-controls
                   ar>
     </model-viewer>
 
-    <textarea id="jawaban" placeholder="Tulis jawabanmu di sini..."></textarea>
+    <input type="text" id="jawaban" placeholder="Tulis jawabanmu di sini...">
     <button onclick="kirim()">Kirim Jawaban & Lanjut</button>
     <p id="status"></p>
   </div>
 
   <script>
     function kirim() {
-      const nama = localStorage.getItem("namaSiswa");
       const jawaban = document.getElementById("jawaban").value.trim();
-
+      const nama = localStorage.getItem("namaSiswa"); // Ambil dari index.html
+      if (!nama) {
+        alert("Nama belum diisi di halaman awal!");
+        return;
+      }
       if (!jawaban) {
         alert("Jawaban tidak boleh kosong!");
         return;
       }
 
-      const data = {
-        nama: nama,
-        soal: "Soal 1 - Bidang diagonal kubus",
-        jawaban: jawaban
-      };
+      const data = { nama: nama, soal: "Soal 1", jawaban: jawaban };
 
       fetch("https://script.google.com/macros/s/AKfycbwSajqkKsstYNjYxALDFC0P2WigjJVXp7I-TKfNpn3U5eYzN8geEF8NO-B-O-9clQrPpQ/exec", {
         method: "POST",
