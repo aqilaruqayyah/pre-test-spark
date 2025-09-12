@@ -9,8 +9,9 @@
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
       text-align: center;
-      padding: 20px;
       margin: 0;
+      padding-top: 15vh; /* konten turun 15vh supaya tidak ketutup header */
+      box-sizing: border-box;
     }
 
     .soal-box {
@@ -105,7 +106,7 @@ function submitSemua(){
   data.append("soal4", localStorage.getItem("soal4"));
 
   // Ganti URL di bawah dengan Web App URL Apps Script kamu
-  fetch("https://script.google.com/macros/s/AKfycbxtHnEKtCwNPb0khkMMNBz5hWExt6X8HcsEQd5aOAdZIBd7WGkkwrDJU2iUYPrYdxJO5g/exec {
+  fetch("https://script.google.com/macros/s/AKfycbxtHnEKtCwNPb0khkMMNBz5hWExt6X8HcsEQd5aOAdZIBd7WGkkwrDJU2iUYPrYdxJO5g/exec", {
     method: "POST",
     body: data,
     mode: "no-cors"
