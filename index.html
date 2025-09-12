@@ -10,10 +10,10 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom, #cce7ff, #99d6ff);
       margin: 0;
-      padding-top: 15vh; /* konten turun supaya tidak tertutup menu Sites */
+      padding-top: 15vh; /* konten turun 15vh supaya tidak ketutup header */
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* pakai flex-start supaya konten ikut padding-top */
+      align-items: flex-start; /* mulai dari bawah padding */
       min-height: 100vh;
       text-align: center;
     }
@@ -69,7 +69,7 @@
 <body>
 
 <div class="container">
-  <h1>✨ Pre-Test ✨</h1>
+  <h1>✨ Pre-Test Spark ✨</h1>
   <p>Silakan isi nama kamu terlebih dahulu untuk memulai pre-test.</p>
 
   <input type="text" id="namaSiswa" placeholder="Nama Kamu" required>
@@ -84,8 +84,10 @@ function mulai(){
     alert("Nama harus diisi!");
     return;
   }
+  // Simpan nama di localStorage untuk halaman soal
   localStorage.setItem("namaSiswa", nama);
-  window.location.href = "soal1.html";
+  // Redirect ke soal1.html atau link Google Sites soal1
+  window.location.href = "soal1.html"; // ganti jika pakai Google Sites
 }
 </script>
 
