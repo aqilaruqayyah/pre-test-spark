@@ -2,130 +2,30 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Soal 1 - Kubus</title>
+  <title>Soal 1 - Pre-Test Spark</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #cce7ff;
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .soal-box {
-      background: #ffffffcc;
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 700px;
-      width: 100%;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      text-align: center;
-    }
-
-    h2 {
-      color: #6a5acd;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    model-viewer {
-      width: 100%;
-      height: 300px;
-      border-radius: 15px;
-      margin: 20px 0;
-      background: #f1f1f1;
-    }
-
-    input[type="text"], button {
-      padding: 12px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: 10px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 15px;
-      font-weight: 600;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    #status {
-      margin-top: 15px;
-      font-size: 14px;
-      font-weight: 600;
-      color: #333;
-    }
+    body { font-family: 'Poppins', sans-serif; background:#cce7ff; text-align:center; padding:20px; }
+    .soal-box { background:#ffffffcc; border-radius:20px; padding:20px; max-width:700px; margin:auto; box-shadow:0 8px 25px rgba(0,0,0,0.2);}
+    h2 { color:#6a5acd; margin-bottom:10px; }
+    p { font-size:1.1em; margin-bottom:15px; }
+    model-viewer { width:100%; height:300px; border-radius:15px; margin:15px 0; background:#f1f1f1;}
+    iframe { width:100%; min-height:400px; border:none; border-radius:10px; }
   </style>
 </head>
 <body>
-  <div class="soal-box">
-    <h2>Soal 1</h2>
-    <p>✨ Banyaknya bidang diagonal sebuah kubus adalah ....</p>
 
-    <!-- Model 3D Kubus -->
-    <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kubus.glb"
-                  alt="Kubus 3D"
-                  camera-controls
-                  ar>
-    </model-viewer>
+<div class="soal-box">
+  <h2>Soal 1</h2>
+  <p>✨ Banyaknya bidang diagonal sebuah kubus adalah ....</p>
 
-    <input type="text" id="jawaban" placeholder="Tulis jawabanmu di sini...">
-    <button onclick="kirim()">Kirim Jawaban & Lanjut</button>
-    <p id="status"></p>
-  </div>
+  <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kubus.glb"
+                alt="Kubus 3D" ar camera-controls></model-viewer>
 
-  <script>
-    function kirim() {
-      const jawaban = document.getElementById("jawaban").value.trim();
-      const nama = localStorage.getItem("namaSiswa"); // Ambil dari index.html
-      if (!nama) {
-        alert("Nama belum diisi di halaman awal!");
-        return;
-      }
-      if (!jawaban) {
-        alert("Jawaban tidak boleh kosong!");
-        return;
-      }
+  <!-- Embed Google Form -->
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdb-za2b1cABaPJc3rqzPGNPgzv07F4U-Xoh3EBewLv-J6uUQ/viewform?embedded=true"></iframe>
+</div>
 
-      const data = { nama: nama, soal: "Soal 1", jawaban: jawaban };
-
-      fetch("https://script.google.com/macros/s/AKfycbwSajqkKsstYNjYxALDFC0P2WigjJVXp7I-TKfNpn3U5eYzN8geEF8NO-B-O-9clQrPpQ/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      })
-      .then(res => res.text())
-      .then(txt => {
-        document.getElementById("status").innerText = "✅ Jawaban tersimpan!";
-        setTimeout(() => {
-          window.location.href = "https://aqilaruqayyah.github.io/pre-test-spark/soal2";
-        }, 1000);
-      })
-      .catch(err => {
-        document.getElementById("status").innerText = "❌ Gagal simpan: " + err;
-      });
-    }
-  </script>
 </body>
 </html>
