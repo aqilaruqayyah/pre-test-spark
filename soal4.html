@@ -2,128 +2,98 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Soal 4 - Kardus Kubus</title>
+  <title>Soal 4 - Pre-Test Spark</title>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      background-color: #cce7ff;
-      color: #333;
+      font-family:Poppins,sans-serif;
+      background:#cce7ff;
+      text-align:center;
+      padding:20px;
     }
-
-    .section-title {
-      font-size: 2em;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
-      margin-top: 30px;
-      margin-bottom: 20px;
+    .soal-box {
+      background:#ffffffcc;
+      padding:20px;
+      border-radius:20px;
+      max-width:700px;
+      margin:auto;
+      box-shadow:0 8px 25px rgba(0,0,0,0.2);
     }
-
-    .soal {
-      background: #ffffffcc;
-      border-radius: 20px;
-      padding: 20px;
-      margin: 20px auto 40px auto;
-      max-width: 700px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    }
-
-    h2 {
-      color: #6a5acd;
-      font-size: 1.8em;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 1.1em;
-      margin-bottom: 15px;
-    }
-
+    h2 { color:#6a5acd; margin-bottom:10px; }
+    p { font-size:1.1em; margin-bottom:15px; }
     model-viewer {
-      width: 100%;
-      height: 300px;
-      border-radius: 15px;
-      margin: 15px 0;
-      background: #f1f1f1;
+      width:100%;
+      height:300px;
+      border-radius:15px;
+      margin:15px 0;
+      background:#f1f1f1;
     }
-
-    input[type="text"], button {
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      margin-top: 10px;
+    input, button {
+      width:90%;
+      padding:12px;
+      margin-top:10px;
+      border-radius:10px;
+      font-size:16px;
+      border:1px solid #ccc;
     }
-
     button {
-      background-color: #6a5acd;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
+      background:#4CAF50;
+      color:white;
+      border:none;
+      cursor:pointer;
+      font-weight:600;
     }
-
-    button:hover {
-      background-color: #5848c2;
-    }
+    button:hover { background:#45a049; }
   </style>
 </head>
 <body>
 
-  <div class="section-title">Latihan Soal</div>
+<div class="soal-box">
+  <h2>Soal 4</h2>
+  <p>✨ Sebuah kardus berbentuk kubus dengan panjang rusuk 25 cm akan dilapisi kertas kado. Berapa luas kertas minimal yang dibutuhkan?</p>
 
-  <div class="soal">
-    <h2>Soal 4</h2>
-    <p>✨ Sebuah kardus berbentuk kubus dengan panjang rusuk 25 cm akan dilapisi kertas kado. Berapa luas kertas minimal yang dibutuhkan?</p>
+  <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kardus.glb"
+                alt="Kardus 3D" ar camera-controls></model-viewer>
 
-    <!-- Model 3D Kardus -->
-    <model-viewer src="https://raw.githubusercontent.com/aqilaruqayyah/model-3d/main/kardus.glb"
-                  alt="Kardus Kubus 3D"
-                  ar
-                  camera-controls>
-    </model-viewer>
+  <input type="text" id="jawaban4" placeholder="Tulis jawabanmu di sini">
+  <br>
+  <button onclick="submitSemua()">Kirim Semua Jawaban</button>
+</div>
 
-    <!-- Form Jawaban -->
-    <input type="text" id="jawaban" placeholder="Masukkan jawaban kamu di sini" />
-    <br><br>
-    <button onclick="submitAnswer()">Kirim Jawaban</button>
-  </div>
+<script>
+function submitSemua(){
+  const jawaban = document.getElementById('jawaban4').value.trim();
+  if(!jawaban){
+    alert("Jawaban harus diisi!");
+    return;
+  }
 
-  <script>
-    function submitAnswer() {
-      const jawaban = document.getElementById('jawaban').value;
-      const nama = localStorage.getItem("nama"); // ambil nama dari index
-      if (!jawaban) {
-        alert("Isi dulu jawabannya!");
-        return;
-      }
+  // Simpan jawaban soal4 di localStorage
+  localStorage.setItem("soal4", jawaban);
 
-      fetch("https://script.google.com/macros/s/AKfycbwSajqkKsstYNjYxALDFC0P2WigjJVXp7I-TKfNpn3U5eYzN8geEF8NO-B-O-9clQrPpQ/exec", {
-        method: "POST",
-        body: new URLSearchParams({
-          "nama": nama,
-          "soal": "Soal 4",
-          "jawaban": jawaban
-        })
-      })
-      .then(res => res.text())
-      .then(data => {
-        alert("Jawaban berhasil dikirim! 🎉");
-        // kalau mau selesaiin quiz, redirect ke halaman "Terima kasih"
-        window.location.href = "selesai.html";
-      })
-      .catch(err => {
-        console.error(err);
-        alert("Gagal mengirim jawaban.");
-      });
-    }
-  </script>
+  // Ambil semua jawaban dan nama dari localStorage
+  const data = new URLSearchParams();
+  data.append("nama", localStorage.getItem("namaSiswa"));
+  data.append("soal1", localStorage.getItem("soal1"));
+  data.append("soal2", localStorage.getItem("soal2"));
+  data.append("soal3", localStorage.getItem("soal3"));
+  data.append("soal4", localStorage.getItem("soal4"));
+
+  // Ganti URL di bawah dengan Web App URL Apps Script kamu
+  fetch("https://script.google.com/macros/s/AKfycbxtHnEKtCwNPb0khkMMNBz5hWExt6X8HcsEQd5aOAdZIBd7WGkkwrDJU2iUYPrYdxJO5g/exec", {
+    method:"POST",
+    body: data,
+    mode:"no-cors"
+  })
+  .then(() => {
+    // Hapus localStorage setelah submit
+    localStorage.clear();
+    // Redirect ke halaman selesai
+    window.location.href="selesai.html";
+  })
+  .catch(err => alert("Gagal simpan jawaban"));
+}
+</script>
 
 </body>
 </html>
