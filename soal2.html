@@ -9,9 +9,14 @@
       font-family: 'Poppins', sans-serif;
       background: #cce7ff;
       text-align: center;
-      padding-top: 15vh; /* konten turun supaya tidak ketutupan menu Sites */
-      box-sizing: border-box;
+      padding: 20px;
+      padding-top: 15vh; /* turun supaya tidak ketutup header Google Sites */
       margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* mulai dari bawah padding */
+      min-height: 100vh;
+      box-sizing: border-box;
     }
 
     .soal-box {
@@ -43,7 +48,9 @@
     }
 
     @media (max-width: 480px) {
-      model-viewer { height: 200px; }
+      model-viewer {
+        height: 200px;
+      }
     }
 
     input, button {
@@ -91,7 +98,9 @@ function lanjut(){
     alert("Jawaban harus diisi!");
     return;
   }
+  // Simpan jawaban soal2 di localStorage
   localStorage.setItem("soal2", jawaban);
+  // Redirect ke soal3.html (atau link soal3 di Google Sites)
   window.location.href = "soal3.html";
 }
 </script>
