@@ -8,42 +8,49 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      background: #cce7ff;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: #fff;
     }
 
-    .container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
+    .box {
+      background: #ffffffcc;
       border-radius: 20px;
-      text-align: center;
-      max-width: 400px;
+      padding: 40px 30px;
       width: 90%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
+      max-width: 450px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      text-align: center;
     }
 
     h1 {
-      margin-bottom: 20px;
+      font-size: 2em;
       font-weight: 700;
+      color: #6a5acd;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1em;
+      margin-bottom: 20px;
+      color: #333;
     }
 
     input {
       padding: 12px;
       width: 100%;
-      margin-bottom: 20px;
-      border: none;
       border-radius: 10px;
+      border: 1px solid #ccc;
       font-size: 16px;
+      margin-bottom: 20px;
     }
 
     button {
-      background: #ff9800;
+      background: #4CAF50;
       color: white;
       border: none;
       padding: 12px 24px;
@@ -55,22 +62,23 @@
     }
 
     button:hover {
-      background: #e68900;
+      background: #45a049;
     }
 
-    p.note {
-      font-size: 14px;
-      opacity: 0.8;
+    .note {
+      font-size: 0.9em;
+      color: #444;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="box">
     <h1>✨ Pre-Test Spark</h1>
-    <p>Masukkan nama kamu sebelum memulai:</p>
+    <p>Masukkan nama kamu sebelum memulai soal:</p>
     <input type="text" id="nama" placeholder="Nama lengkap">
     <button onclick="mulai()">Mulai Pre-Test</button>
-    
+    <p class="note">Nama akan tersimpan otomatis ke sistem.</p>
   </div>
 
   <script>
@@ -80,10 +88,8 @@
         alert("Nama harus diisi dulu!");
         return;
       }
-      // simpan ke localStorage
       localStorage.setItem("namaSiswa", nama);
-      // redirect ke soal pertama
-      window.location.href = "soal1.html"; // nanti bisa ganti ke link Google Sites atau hosting kamu
+      window.location.href = "https://aqilaruqayyah.github.io/pre-test-spark/soal1";
     }
   </script>
 </body>
