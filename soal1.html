@@ -81,4 +81,20 @@
 
   <input type="text" id="jawaban1" placeholder="Tulis jawabanmu di sini">
   <br>
-  <button onclick="lanjut()">Lanjut ke
+  <button onclick="lanjut()">Lanjut ke Soal 2</button>
+</div>
+
+<script>
+function lanjut(){
+  const jawaban = document.getElementById('jawaban1').value.trim();
+  if(!jawaban){
+    alert("Jawaban harus diisi!");
+    return;
+  }
+  localStorage.setItem("soal1", jawaban);
+  window.location.href = "soal2.html";
+}
+</script>
+
+</body>
+</html>
