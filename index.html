@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pre-Test Spark</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    input {
+      padding: 12px;
+      width: 100%;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e68900;
+    }
+
+    p.note {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>✨ Pre-Test Spark</h1>
+    <p>Masukkan nama kamu sebelum memulai:</p>
+    <input type="text" id="nama" placeholder="Nama lengkap">
+    <button onclick="mulai()">Mulai Pre-Test</button>
+    <p class="note">Pastikan nama benar karena akan tersimpan di Google Sheets.</p>
+  </div>
+
+  <script>
+    function mulai() {
+      const nama = document.getElementById("nama").value.trim();
+      if (!nama) {
+        alert("Nama harus diisi dulu!");
+        return;
+      }
+      // simpan ke localStorage
+      localStorage.setItem("namaSiswa", nama);
+      // redirect ke soal pertama
+      window.location.href = "soal1.html"; // nanti bisa ganti ke link Google Sites atau hosting kamu
+    }
+  </script>
+</body>
+</html>
