@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Pre-Test</title>
+  <title>Pre-Test Spark</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -10,18 +10,13 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom, #cce7ff, #99d6ff);
       margin: 0;
-      padding: 0;
+      padding-top: 15vh; /* konten turun supaya tidak tertutup menu Sites */
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; /* pakai flex-start supaya konten ikut padding-top */
       min-height: 100vh;
       text-align: center;
     }
-
-    .container, .soal-box {
-      margin-top: 60px; /* geser konten turun */
-    }
-
 
     .container {
       background: #ffffffcc;
@@ -89,9 +84,7 @@ function mulai(){
     alert("Nama harus diisi!");
     return;
   }
-  // Simpan nama di localStorage untuk halaman soal
   localStorage.setItem("namaSiswa", nama);
-  // Redirect ke soal1.html
   window.location.href = "soal1.html";
 }
 </script>
